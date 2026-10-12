@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#f3f7fc">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>Customer Registration</title>
+<style>
+:root{
+  --bg:#f3f7fc; --panel:rgba(255,255,255,.94); --line:rgba(25,91,180,.16);
+  --gold:#1269e8; --gold2:#164fa8; --muted:#66758d; --text:#10203f;
+  --field:#ffffff; --good:#16834b;
+}
+*{box-sizing:border-box}
+html{min-height:100%;background:var(--bg)}
+body{
+  margin:0; min-height:100vh; color:var(--text);
+  font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  background:
+    radial-gradient(ellipse at 12% 5%,rgba(45,123,238,.10),transparent 34%),
+    radial-gradient(ellipse at 90% 85%,rgba(80,155,255,.10),transparent 32%),
+    linear-gradient(145deg,#f9fbff 0%,#edf3fb 50%,#f7faff 100%);
+  display:flex; align-items:center; justify-content:center; padding:28px 16px;
+}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.15;
+  background-image:linear-gradient(rgba(28,75,140,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(28,75,140,.035) 1px,transparent 1px);
+  background-size:46px 46px;mask-image:linear-gradient(to bottom,black,transparent 90%)}
+.shell{width:min(100%,1020px);position:relative;z-index:1}
+.topline{display:flex;justify-content:space-between;align-items:center;margin:0 4px 18px;gap:12px}
+.brand{display:flex;align-items:center;gap:11px;letter-spacing:.16em;text-transform:uppercase;font-size:11px;font-weight:750;color:#263b60}
+.brand-mark{width:34px;height:34px;border:1px solid rgba(18,105,232,.28);border-radius:11px;display:grid;place-items:center;background:linear-gradient(145deg,rgba(18,105,232,.13),rgba(18,105,232,.025));color:var(--gold);font-size:17px}
+.secure{font-size:10px;letter-spacing:.11em;text-transform:uppercase;color:#65758e;display:flex;align-items:center;gap:7px}
+.secure-dot{width:6px;height:6px;background:var(--good);border-radius:50%;box-shadow:0 0 10px rgba(139,216,165,.65)}
+.card{display:grid;grid-template-columns:.82fr 1.18fr;overflow:hidden;border:1px solid rgba(27,93,174,.12);border-radius:26px;background:rgba(255,255,255,.88);box-shadow:0 24px 70px rgba(31,67,115,.12),inset 0 1px rgba(255,255,255,.85);backdrop-filter:blur(18px)}
+.intro{padding:42px 34px;position:relative;overflow:hidden;background:linear-gradient(155deg,rgba(46,126,239,.10),rgba(255,255,255,.3) 55%),#f4f8ff;border-right:1px solid rgba(18,105,232,.12)}
+.intro:after{content:"";position:absolute;width:260px;height:260px;border:1px solid rgba(18,105,232,.12);border-radius:50%;right:-130px;bottom:-100px;box-shadow:0 0 0 24px rgba(18,105,232,.025),0 0 0 52px rgba(18,105,232,.02)}
+.eyebrow{font-size:10px;text-transform:uppercase;letter-spacing:.22em;color:var(--gold);font-weight:800;display:flex;align-items:center;gap:9px}
+.eyebrow:before{content:"";width:23px;height:1px;background:var(--gold)}
+h1{font-family:Georgia,"Times New Roman",serif;font-weight:500;letter-spacing:-.045em;font-size:clamp(35px,4vw,52px);line-height:1.04;margin:24px 0 18px}
+h1 span{color:var(--gold);font-style:italic}
+.intro-copy{font-size:13px;line-height:1.8;color:#5d6d86;max-width:270px}
+.rule{height:1px;background:linear-gradient(90deg,rgba(18,105,232,.38),transparent);margin:28px 0 22px}
+.feature{display:flex;align-items:flex-start;gap:11px;margin:16px 0;position:relative;z-index:1}
+.feature-icon{width:30px;height:30px;flex:0 0 30px;display:grid;place-items:center;border:1px solid rgba(18,105,232,.18);border-radius:9px;color:var(--gold);font-size:13px;background:rgba(18,105,232,.045)}
+.feature strong{display:block;font-size:12px;font-weight:650;margin:1px 0 4px}
+.feature small{display:block;color:#71809a;font-size:11px;line-height:1.5}
+.form-area{padding:39px clamp(22px,4vw,48px) 30px}
+.form-head{margin-bottom:27px}
+.form-head h2{font-size:23px;letter-spacing:-.035em;margin:0 0 8px;font-weight:650}
+.form-head p{font-size:12px;color:var(--muted);margin:0;line-height:1.6}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px 15px}
+.field{min-width:0}
+.field.full{grid-column:1/-1}
+label{display:flex;justify-content:space-between;gap:8px;font-size:11px;color:#253b5f;font-weight:650;margin:0 0 9px}
+.optional{font-size:10px;color:#777b82;font-weight:500}
+.control{position:relative}
+input,select,textarea{width:100%;border:1px solid #d5e0ef;border-radius:12px;background:linear-gradient(180deg,#ffffff,#f9fbff);padding:14px 14px;color:#10203f;font:inherit;font-size:13px;outline:none;transition:border .2s,box-shadow .2s}
+input::placeholder,textarea::placeholder{color:#8391a8}
+input:focus,select:focus,textarea:focus{border-color:rgba(18,105,232,.62);box-shadow:0 0 0 3px rgba(18,105,232,.09)}
+select{appearance:none;padding-right:38px;color:#e8e5dd}
+.select-arrow{position:absolute;right:15px;top:50%;transform:translateY(-50%);pointer-events:none;color:#b8a06e;font-size:12px}
+textarea{resize:vertical;min-height:82px}
+.hint{font-size:10px;color:#777b82;margin-top:7px;line-height:1.45}
+.submit{width:100%;margin-top:23px;border:0;border-radius:12px;padding:15px 18px;color:#ffffff;font-size:12px;font-weight:850;letter-spacing:.09em;text-transform:uppercase;cursor:pointer;background:linear-gradient(105deg,#0867e9,#248bff 48%,#0759d5);color:#ffffff;box-shadow:0 8px 25px rgba(18,105,232,.22);transition:transform .18s,filter .18s}
+.submit:hover{filter:brightness(1.07);transform:translateY(-1px)}
+.submit:disabled{opacity:.65;cursor:wait;transform:none}
+.privacy{display:flex;gap:9px;align-items:flex-start;margin-top:16px;color:#697b95;font-size:10px;line-height:1.65}
+.privacy svg{flex:0 0 14px;margin-top:1px;color:var(--gold)}
+.status{display:none;margin-top:15px;border-radius:10px;padding:12px 13px;font-size:12px;line-height:1.55}
+.status.show{display:block}
+.status.ok{border:1px solid rgba(139,216,165,.25);background:rgba(139,216,165,.07);color:#bce9c9}
+.status.err{border:1px solid rgba(255,120,120,.25);background:rgba(255,120,120,.07);color:#ffc1c1}
+.foot{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;margin:15px 5px 0;color:#7d8ba0;font-size:10px;line-height:1.6}
+.foot strong{color:#526785;font-weight:600}
+
+.video-hero{position:relative;width:100%;aspect-ratio:16/7;min-height:210px;max-height:410px;overflow:hidden;border-radius:22px;margin:0 0 18px;background:#071324;box-shadow:0 18px 45px rgba(18,54,100,.18);border:1px solid rgba(25,91,180,.18)}
+.video-hero iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.video-caption{position:absolute;left:18px;bottom:15px;z-index:2;padding:8px 12px;border-radius:999px;background:rgba(7,17,35,.7);border:1px solid rgba(255,255,255,.18);color:#fff;font-size:10px;letter-spacing:.12em;text-transform:uppercase;pointer-events:none}
+.sound-hint{position:absolute;right:14px;bottom:14px;z-index:3;border:1px solid rgba(255,255,255,.28);border-radius:999px;background:rgba(5,16,34,.82);color:#fff;padding:10px 14px;font:600 11px system-ui;cursor:pointer;backdrop-filter:blur(10px)}
+.video-fallback{position:absolute;top:14px;right:14px;z-index:3;text-decoration:none;border:1px solid rgba(255,255,255,.22);border-radius:999px;background:rgba(5,16,34,.82);color:#fff;padding:9px 12px;font:600 10px system-ui}
+@media(max-width:760px){.video-hero{aspect-ratio:16/9;min-height:180px;border-radius:17px;margin-bottom:13px}.video-caption{font-size:9px;left:11px;bottom:11px}.sound-hint{right:9px;bottom:9px;padding:9px 11px}.video-fallback{right:9px;top:9px;padding:8px 10px;font-size:9px}}
+
+@media(max-width:760px){
+ body{padding:17px 12px;align-items:flex-start}
+ .topline{margin:0 2px 13px}
+ .card{grid-template-columns:1fr;border-radius:21px}
+ .intro{padding:25px 24px 23px;border-right:0;border-bottom:1px solid rgba(18,105,232,.12)}
+ .intro:after{width:170px;height:170px;right:-80px;bottom:-90px}
+ h1{font-size:36px;margin:15px 0 10px}
+ .intro-copy{max-width:420px;font-size:12px}
+ .rule{margin:17px 0 12px}
+ .feature-row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+ .feature{margin:4px 0}
+ .feature-icon{width:27px;height:27px;flex-basis:27px}
+ .form-area{padding:27px 22px 24px}
+ .form-head{margin-bottom:22px}
+}
+@media(max-width:420px){
+ .secure{font-size:9px;letter-spacing:.06em}
+ .brand{font-size:10px;letter-spacing:.11em}
+ .form-grid{grid-template-columns:1fr;gap:16px}
+ .field.full{grid-column:auto}
+ .feature-row{grid-template-columns:1fr}
+ .intro{padding:23px 21px}
+ .form-area{padding:25px 18px 22px}
+}
+</style>
+</head>
+<body>
+<main class="shell">
+  <div class="topline">
+    <div class="brand"><div class="brand-mark">✦</div><span>Private Client Desk</span></div>
+    <div class="secure"><span class="secure-dot"></span> Secure registration</div>
+  </div>
+  <section class="video-hero" aria-label="Featured video">
+    <iframe id="heroVideo"
+      src="https://www.youtube-nocookie.com/embed/09GewnVMTdw?autoplay=1&mute=1&playsinline=1&controls=1&rel=0&loop=1&playlist=09GewnVMTdw"
+      title="Featured YouTube video"
+      allow="autoplay; encrypted-media; picture-in-picture; fullscreen"
+      referrerpolicy="strict-origin-when-cross-origin"
+      allowfullscreen></iframe>
+    <div class="video-caption">Featured video</div>
+    <button type="button" class="sound-hint" id="soundButton">Enable sound</button>
+    <a class="video-fallback" id="videoFallback" href="https://youtu.be/09GewnVMTdw" target="_blank" rel="noopener noreferrer">Video not loading? Watch on YouTube ↗</a>
+  </section>
+  <section class="card">
+    <aside class="intro">
+      <div class="eyebrow">Client onboarding</div>
+      <h1>Begin with<br><span>clarity.</span></h1>
+      <p class="intro-copy">Share your details with our team. Your registration information is collected for private administrative follow-up.</p>
+      <div class="rule"></div>
+      <div class="feature-row">
+        <div class="feature"><div class="feature-icon">◇</div><div><strong>Private by design</strong><small>Customer records are not displayed publicly.</small></div></div>
+        <div class="feature"><div class="feature-icon">↗</div><div><strong>Personal follow-up</strong><small>Our team can contact you using the details provided.</small></div></div>
+      </div>
+    </aside>
+    <section class="form-area">
+      <div class="form-head">
+        <h2>Customer registration</h2>
+        <p>Complete the fields below to submit your details.</p>
+      </div>
+      <form id="registrationForm">
+        <div class="form-grid">
+          <div class="field">
+            <label for="name">Full name <span>*</span></label>
+            <div class="control"><input id="name" name="name" autocomplete="name" placeholder="Enter your full name" required maxlength="100"></div>
+          </div>
+          <div class="field">
+            <label for="mobile">Mobile number <span>*</span></label>
+            <div class="control"><input id="mobile" name="mobile" type="tel" autocomplete="tel" inputmode="tel" placeholder="+91 98765 43210" required maxlength="20" pattern="[+0-9() -]{8,20}"></div>
+          </div>
+          <div class="field full">
+            <label for="address">Address <span>*</span></label>
+            <div class="control"><textarea id="address" name="address" autocomplete="street-address" placeholder="Enter your full address" required maxlength="500"></textarea></div>
+          </div>
+          <div class="field full">
+            <label for="plan">Interest / plan <span class="optional">Optional</span></label>
+            <div class="control">
+              <select id="plan" name="plan">
+                <option value="">Choose an option</option>
+                <option value="BVS">BVS</option>
+                <option value="Staking">Staking</option>
+                <option value="Other / To be confirmed">Other / To be confirmed</option>
+              </select><span class="select-arrow">⌄</span>
+            </div>
+            <div class="hint">Selecting a plan does not confirm an investment or guarantee returns.</div>
+          </div>
+        </div>
+        <button class="submit" id="submitBtn" type="submit">Submit registration <span aria-hidden="true">↗</span></button>
+        <div id="status" class="status" role="status" aria-live="polite"></div>
+        <div class="privacy">
+          <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/><path d="M12 14v3"/></svg>
+          <span>Your details are intended for administrator follow-up only. Do not submit passwords, OTPs, wallet seed phrases, or private keys.</span>
+        </div>
+      </form>
+    </section>
+  </section>
+  <footer class="foot"><span>Independent customer registration form</span><span><strong>Not an official Nexus.vin website or service.</strong></span></footer>
+</main>
+<script>
+/* Replace this with your deployed Google Apps Script Web App URL. */
+const SCRIPT_URL = "PASTE_YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL_HERE";
+const VIDEO_ID = "09GewnVMTdw";
+const videoFrame = document.getElementById("heroVideo");
+document.getElementById("soundButton").addEventListener("click", () => {
+  // Sound playback is requested only after a direct user gesture.
+  videoFrame.src = "https://www.youtube-nocookie.com/embed/" + VIDEO_ID + "?autoplay=1&mute=0&playsinline=1&controls=1&rel=0&loop=1&playlist=" + VIDEO_ID;
+  document.getElementById("soundButton").textContent = "Sound requested";
+});
+/* If embedded playback is blocked, visitors still have a direct YouTube link. */
+const form = document.getElementById("registrationForm");
+const button = document.getElementById("submitBtn");
+const statusBox = document.getElementById("status");
+
+form.addEventListener("submit", async (event) => {
+  event.preventDefault();
+  statusBox.className = "status";
+  if (!SCRIPT_URL || SCRIPT_URL.includes("PASTE_YOUR_")) {
+    statusBox.textContent = "The form design is ready, but the admin storage connection has not been configured yet.";
+    statusBox.className = "status show err";
+    return;
+  }
+  button.disabled = true;
+  button.textContent = "Submitting…";
+  const data = Object.fromEntries(new FormData(form).entries());
+  data.submittedAt = new Date().toISOString();
+  try {
+    await fetch(SCRIPT_URL, {
+      method: "POST",
+      mode: "no-cors",
+      headers: {"Content-Type":"text/plain;charset=utf-8"},
+      body: JSON.stringify(data)
+    });
+    statusBox.textContent = "Your submission has been sent. If the admin connection is configured correctly, it will appear in the private registration sheet.";
+    statusBox.className = "status show ok";
+    form.reset();
+  } catch (error) {
+    statusBox.textContent = "Could not send the form. Please check your connection and try again.";
+    statusBox.className = "status show err";
+  } finally {
+    button.disabled = false;
+    button.innerHTML = 'Submit registration <span aria-hidden="true">↗</span>';
+  }
+});
+</script>
+</body>
+</html>
