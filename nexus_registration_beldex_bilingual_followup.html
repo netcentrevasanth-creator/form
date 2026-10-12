@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#f3f7fc">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>Beldex Community Selvaraj Team - Registration</title>
+<style>
+:root{
+  --bg:#f3f7fc; --panel:rgba(255,255,255,.94); --line:rgba(25,91,180,.16);
+  --gold:#1269e8; --gold2:#164fa8; --muted:#66758d; --text:#10203f;
+  --field:#ffffff; --good:#16834b;
+}
+*{box-sizing:border-box}
+html{min-height:100%;background:var(--bg)}
+body{
+  margin:0; min-height:100vh; color:var(--text);
+  font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  background:
+    radial-gradient(ellipse at 12% 5%,rgba(45,123,238,.10),transparent 34%),
+    radial-gradient(ellipse at 90% 85%,rgba(80,155,255,.10),transparent 32%),
+    linear-gradient(145deg,#f9fbff 0%,#edf3fb 50%,#f7faff 100%);
+  display:flex; align-items:center; justify-content:center; padding:28px 16px;
+}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.15;
+  background-image:linear-gradient(rgba(28,75,140,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(28,75,140,.035) 1px,transparent 1px);
+  background-size:46px 46px;mask-image:linear-gradient(to bottom,black,transparent 90%)}
+.shell{width:min(100%,1020px);position:relative;z-index:1}
+.topline{display:flex;justify-content:space-between;align-items:center;margin:0 4px 18px;gap:12px}
+.brand{display:flex;align-items:center;gap:11px;letter-spacing:.16em;text-transform:uppercase;font-size:11px;font-weight:750;color:#263b60}
+.brand-flash{letter-spacing:0;text-transform:none;font-size:clamp(22px,4.6vw,36px);font-weight:900}
+.team-heading{display:inline-block;line-height:1.2;background:linear-gradient(90deg,#123e91,#1687ee,#18a56b,#123e91);background-size:250% auto;background-clip:text;-webkit-background-clip:text;color:transparent;animation:teamShimmer 3s linear infinite,teamGlow 1.8s ease-in-out infinite alternate}
+.team-name{white-space:nowrap}
+@keyframes teamShimmer{to{background-position:250% center}}
+@keyframes teamGlow{from{filter:drop-shadow(0 0 0 rgba(22,135,238,0))}to{filter:drop-shadow(0 0 7px rgba(22,135,238,.35))}}
+@media(prefers-reduced-motion:reduce){.team-heading{animation:none;background-position:center}}
+
+.brand-mark{width:38px;height:38px;flex:0 0 38px;border-radius:10px;display:grid;place-items:center;overflow:hidden;background:#fff;border:1px solid rgba(3,192,11,.25)}
+.brand-mark img{width:100%;height:100%;object-fit:contain;display:block}
+.secure{font-size:10px;letter-spacing:.11em;text-transform:uppercase;color:#65758e;display:flex;align-items:center;gap:7px}
+.secure-dot{width:6px;height:6px;background:var(--good);border-radius:50%;box-shadow:0 0 10px rgba(139,216,165,.65)}
+.card{display:grid;grid-template-columns:.82fr 1.18fr;overflow:hidden;border:1px solid rgba(27,93,174,.12);border-radius:26px;background:rgba(255,255,255,.88);box-shadow:0 24px 70px rgba(31,67,115,.12),inset 0 1px rgba(255,255,255,.85);backdrop-filter:blur(18px)}
+.intro{padding:42px 34px;position:relative;overflow:hidden;background:linear-gradient(155deg,rgba(46,126,239,.10),rgba(255,255,255,.3) 55%),#f4f8ff;border-right:1px solid rgba(18,105,232,.12)}
+.intro:after{content:"";position:absolute;width:260px;height:260px;border:1px solid rgba(18,105,232,.12);border-radius:50%;right:-130px;bottom:-100px;box-shadow:0 0 0 24px rgba(18,105,232,.025),0 0 0 52px rgba(18,105,232,.02)}
+.eyebrow{font-size:10px;text-transform:uppercase;letter-spacing:.22em;color:var(--gold);font-weight:800;display:flex;align-items:center;gap:9px}
+.eyebrow:before{content:"";width:23px;height:1px;background:var(--gold)}
+h1{font-family:Georgia,"Times New Roman",serif;font-weight:500;letter-spacing:-.045em;font-size:clamp(35px,4vw,52px);line-height:1.04;margin:24px 0 18px}
+h1 span{color:var(--gold);font-style:italic}
+.intro-copy{font-size:13px;line-height:1.8;color:#5d6d86;max-width:270px}
+.rule{height:1px;background:linear-gradient(90deg,rgba(18,105,232,.38),transparent);margin:28px 0 22px}
+.feature{display:flex;align-items:flex-start;gap:11px;margin:16px 0;position:relative;z-index:1}
+.feature-icon{width:30px;height:30px;flex:0 0 30px;display:grid;place-items:center;border:1px solid rgba(18,105,232,.18);border-radius:9px;color:var(--gold);font-size:13px;background:rgba(18,105,232,.045)}
+.feature strong{display:block;font-size:12px;font-weight:650;margin:1px 0 4px}
+.feature small{display:block;color:#71809a;font-size:11px;line-height:1.5}
+.form-area{padding:39px clamp(22px,4vw,48px) 30px}
+.form-head{margin-bottom:27px}
+.form-head h2{font-size:23px;letter-spacing:-.035em;margin:0 0 8px;font-weight:650}
+.form-head p{font-size:12px;color:var(--muted);margin:0;line-height:1.6}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px 15px}
+.field{min-width:0}
+.field.full{grid-column:1/-1}
+label{display:flex;justify-content:space-between;gap:8px;font-size:11px;color:#253b5f;font-weight:650;margin:0 0 9px}
+.optional{font-size:10px;color:#777b82;font-weight:500}
+.control{position:relative}
+input,select,textarea{width:100%;border:1px solid #d5e0ef;border-radius:12px;background:linear-gradient(180deg,#ffffff,#f9fbff);padding:14px 14px;color:#10203f;font:inherit;font-size:13px;outline:none;transition:border .2s,box-shadow .2s}
+input::placeholder,textarea::placeholder{color:#8391a8}
+input:focus,select:focus,textarea:focus{border-color:rgba(18,105,232,.62);box-shadow:0 0 0 3px rgba(18,105,232,.09)}
+select{appearance:none;padding-right:38px;color:#e8e5dd}
+.select-arrow{position:absolute;right:15px;top:50%;transform:translateY(-50%);pointer-events:none;color:#b8a06e;font-size:12px}
+textarea{resize:vertical;min-height:82px}
+.hint{font-size:10px;color:#777b82;margin-top:7px;line-height:1.45}
+.submit{width:100%;margin-top:23px;border:0;border-radius:12px;padding:15px 18px;color:#ffffff;font-size:12px;font-weight:850;letter-spacing:.09em;text-transform:uppercase;cursor:pointer;background:linear-gradient(105deg,#0867e9,#248bff 48%,#0759d5);color:#ffffff;box-shadow:0 8px 25px rgba(18,105,232,.22);transition:transform .18s,filter .18s}
+.submit:hover{filter:brightness(1.07);transform:translateY(-1px)}
+.submit:disabled{opacity:.65;cursor:wait;transform:none}
+.privacy{display:flex;gap:9px;align-items:flex-start;margin-top:16px;color:#697b95;font-size:10px;line-height:1.65}
+.privacy svg{flex:0 0 14px;margin-top:1px;color:var(--gold)}
+.status{display:none;margin-top:15px;border-radius:10px;padding:12px 13px;font-size:12px;line-height:1.55}
+.status.show{display:block}
+.status.ok{border:1px solid rgba(139,216,165,.25);background:rgba(139,216,165,.07);color:#bce9c9}
+.status.err{border:1px solid rgba(255,120,120,.25);background:rgba(255,120,120,.07);color:#ffc1c1}
+.foot{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;margin:15px 5px 0;color:#7d8ba0;font-size:10px;line-height:1.6}
+.foot strong{color:#526785;font-weight:600}
+
+.video-hero{position:relative;width:100%;aspect-ratio:16/7;min-height:210px;max-height:410px;overflow:hidden;border-radius:22px;margin:0 0 18px;background:#071324;box-shadow:0 18px 45px rgba(18,54,100,.18);border:1px solid rgba(25,91,180,.18)}
+.video-hero video{position:absolute;inset:0;width:100%;height:100%;border:0;object-fit:contain;background:#071324}
+.video-caption{position:absolute;left:18px;bottom:15px;z-index:2;padding:8px 12px;border-radius:999px;background:rgba(7,17,35,.7);border:1px solid rgba(255,255,255,.18);color:#fff;font-size:10px;letter-spacing:.12em;text-transform:uppercase;pointer-events:none}
+.sound-hint{position:absolute;right:14px;bottom:14px;z-index:3;border:1px solid rgba(255,255,255,.28);border-radius:999px;background:rgba(5,16,34,.82);color:#fff;padding:10px 14px;font:600 11px system-ui;cursor:pointer;backdrop-filter:blur(10px)}
+.video-fallback{position:absolute;top:14px;right:14px;z-index:3;text-decoration:none;border:1px solid rgba(255,255,255,.22);border-radius:999px;background:rgba(5,16,34,.82);color:#fff;padding:9px 12px;font:600 10px system-ui}
+@media(max-width:760px){.video-hero{aspect-ratio:16/9;min-height:180px;border-radius:17px;margin-bottom:13px}.video-caption{font-size:9px;left:11px;bottom:11px}.sound-hint{right:9px;bottom:9px;padding:9px 11px}.video-fallback{right:9px;top:9px;padding:8px 10px;font-size:9px}}
+
+@media(max-width:760px){
+ body{padding:17px 12px;align-items:flex-start}
+ .topline{margin:0 2px 13px}
+ .card{grid-template-columns:1fr;border-radius:21px}
+ .intro{padding:25px 24px 23px;border-right:0;border-bottom:1px solid rgba(18,105,232,.12)}
+ .intro:after{width:170px;height:170px;right:-80px;bottom:-90px}
+ h1{font-size:36px;margin:15px 0 10px}
+ .intro-copy{max-width:420px;font-size:12px}
+ .rule{margin:17px 0 12px}
+ .feature-row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+ .feature{margin:4px 0}
+ .feature-icon{width:27px;height:27px;flex-basis:27px}
+ .form-area{padding:27px 22px 24px}
+ .form-head{margin-bottom:22px}
+}
+@media(max-width:420px){
+ .secure{font-size:9px;letter-spacing:.06em}
+ .brand{font-size:10px;letter-spacing:.11em}
+ .form-grid{grid-template-columns:1fr;gap:16px}
+ .field.full{grid-column:auto}
+ .feature-row{grid-template-columns:1fr}
+ .intro{padding:23px 21px}
+ .form-area{padding:25px 18px 22px}
+}
+
+/* Registration success celebration */
+.celebration{position:fixed;inset:0;z-index:9999;display:none;align-items:center;justify-content:center;padding:22px;background:rgba(7,19,42,.62);backdrop-filter:blur(7px);overflow:hidden}
+.celebration.show{display:flex;animation:veilIn .25s ease-out}
+.welcome-card{position:relative;z-index:2;width:min(100%,440px);padding:38px 26px 30px;border:1px solid rgba(255,255,255,.85);border-radius:26px;text-align:center;background:linear-gradient(145deg,#fff,#f0f7ff);box-shadow:0 25px 90px rgba(0,0,0,.25);animation:welcomePop .65s cubic-bezier(.2,1.4,.4,1) both}
+.welcome-icon{width:76px;height:76px;margin:0 auto 18px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(135deg,#0c72ed,#52b4ff);color:white;font-size:37px;box-shadow:0 10px 30px rgba(18,105,232,.3);animation:iconPulse 1.4s ease-in-out infinite}
+.welcome-card h2{font-size:clamp(27px,6vw,36px);line-height:1.1;letter-spacing:-.04em;margin:0 0 12px;color:#10203f}
+.welcome-card h2 span{display:block;color:#1269e8;margin-top:7px}
+.welcome-card p{margin:0 auto 22px;max-width:330px;font-size:14px;line-height:1.7;color:#5c6e88}
+.welcome-close{border:0;border-radius:12px;padding:13px 24px;background:linear-gradient(105deg,#0867e9,#248bff);color:#fff;font-weight:750;cursor:pointer;box-shadow:0 8px 22px rgba(18,105,232,.22)}
+.confetti-piece{position:fixed;z-index:10000;top:-18px;width:9px;height:15px;pointer-events:none;animation:confettiFall var(--duration,2.8s) cubic-bezier(.15,.6,.3,1) forwards;transform:rotate(var(--rot,0deg));border-radius:2px}
+@keyframes veilIn{from{opacity:0}to{opacity:1}}
+@keyframes welcomePop{0%{transform:translateY(35px) scale(.65);opacity:0}75%{transform:translateY(-5px) scale(1.03);opacity:1}100%{transform:translateY(0) scale(1);opacity:1}}
+@keyframes iconPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.08)}}
+@keyframes confettiFall{0%{transform:translate3d(0,-5vh,0) rotate(0deg);opacity:1}100%{transform:translate3d(var(--drift,80px),110vh,0) rotate(780deg);opacity:0}}
+@media(prefers-reduced-motion:reduce){.welcome-card,.welcome-icon,.celebration.show{animation:none}.confetti-piece{display:none}}
+
+
+/* Language selector and date field */
+.topline{gap:12px;flex-wrap:wrap}
+.top-actions{display:flex;align-items:center;gap:12px}
+.lang-switch{display:flex;gap:4px;padding:4px;border:1px solid var(--line);border-radius:999px;background:#fff}
+.lang-switch button{border:0;border-radius:999px;padding:7px 12px;font-size:11px;font-weight:800;color:var(--muted);background:transparent;cursor:pointer}
+.lang-switch button.active{background:#1269e8;color:#fff}
+.brand-mark{display:flex;align-items:center;justify-content:center;overflow:hidden;background:#fff}
+.brand-mark img{width:100%;height:100%;object-fit:contain;padding:3px}
+.brand-fallback{display:none;align-items:center;justify-content:center;width:100%;height:100%;font-weight:900;color:#00b909;font-size:21px;letter-spacing:-2px}
+.video-hero{background:#071324}
+.video-caption{pointer-events:none}
+@media(max-width:520px){.top-actions{width:100%;justify-content:space-between}.secure{font-size:10px}}
+
+</style>
+</head>
+<body>
+<main class="shell">
+  <div class="topline">
+    <div class="brand brand-flash" aria-label="Beldex Community Selvaraj Team">
+      <span class="team-heading">Beldex Community <span class="team-name">Selvaraj Team</span></span>
+    </div>
+    <div class="top-actions">
+      <div class="lang-switch" role="group" aria-label="Language">
+        <button type="button" class="active" id="langEn" aria-pressed="true">ENG</button>
+        <button type="button" id="langTa" aria-pressed="false">தமிழ்</button>
+      </div>
+      <div class="secure"><span class="secure-dot"></span><span data-en="Secure registration" data-ta="பாதுகாப்பான பதிவு">Secure registration</span></div>
+    </div>
+  </div>
+  <section class="video-hero" aria-label="Featured video">
+    <video id="heroVideo" controls playsinline preload="metadata" poster="">
+      <source src="https://raw.githubusercontent.com/netcentrevasanth-creator/form/main/VN20261012_111247.mp4" type="video/mp4">
+      உங்கள் browser-ல் video playback ஆதரிக்கப்படவில்லை. கீழே உள்ள link-ஐத் திறக்கவும்.
+    </video>
+    <div class="video-caption" data-en="Featured video" data-ta="சிறப்பு வீடியோ">Featured video</div>
+    <button type="button" class="sound-hint" id="soundButton">Enable sound</button>
+  </section>
+  <section class="card">
+    <aside class="intro">
+      <div class="eyebrow" data-en="Client onboarding" data-ta="வாடிக்கையாளர் பதிவு">Client onboarding</div>
+      <h1 data-en="Begin with" data-ta="தெளிவுடன்">Begin with<br><span>clarity.</span></h1>
+      <p class="intro-copy" data-en="Share your details with our team. Your registration information is collected for private administrative follow-up." data-ta="உங்கள் விவரங்களை எங்கள் குழுவுடன் பகிருங்கள். உங்கள் பதிவு விவரங்கள் நிர்வாக follow-up-க்காக மட்டும் சேகரிக்கப்படும்.">Share your details with our team. Your registration information is collected for private administrative follow-up.</p>
+      <div class="rule"></div>
+      <div class="feature-row">
+        <div class="feature"><div class="feature-icon">◇</div><div><strong data-en="Private by design" data-ta="தனியுரிமை பாதுகாப்பு">Private by design</strong><small data-en="Customer records are not displayed publicly." data-ta="வாடிக்கையாளர் விவரங்கள் பொதுவில் காட்டப்படாது.">Customer records are not displayed publicly.</small></div></div>
+        <div class="feature"><div class="feature-icon">↗</div><div><strong data-en="Personal follow-up" data-ta="தனிப்பட்ட தொடர்தொடர்பு">Personal follow-up</strong><small data-en="Our team can contact you using the details provided." data-ta="நீங்கள் வழங்கும் விவரங்கள் மூலம் எங்கள் குழு தொடர்புகொள்ளலாம்.">Our team can contact you using the details provided.</small></div></div>
+      </div>
+    </aside>
+    <section class="form-area">
+      <div class="form-head">
+        <h2 data-en="Customer registration" data-ta="வாடிக்கையாளர் பதிவு">Customer registration</h2>
+        <p data-en="Complete the fields below to submit your details." data-ta="உங்கள் விவரங்களைப் பதிவு செய்ய கீழே உள்ள புலங்களை நிரப்பவும்.">Complete the fields below to submit your details.</p>
+      </div>
+      <form id="registrationForm">
+        <div class="form-grid">
+          <div class="field">
+            <label for="name" data-en="Full name" data-ta="முழுப் பெயர்">Full name <span>*</span></label>
+            <div class="control"><input id="name" name="name" autocomplete="name" placeholder="Enter your full name" data-placeholder-en="Enter your full name" data-placeholder-ta="உங்கள் முழுப் பெயரை உள்ளிடவும்" required maxlength="100"></div>
+          </div>
+          <div class="field">
+            <label for="mobile" data-en="Mobile number" data-ta="மொபைல் எண்">Mobile number <span>*</span></label>
+            <div class="control"><input id="mobile" name="mobile" type="tel" autocomplete="tel" inputmode="tel" placeholder="+91 98765 43210" data-placeholder-en="+91 98765 43210" data-placeholder-ta="+91 98765 43210" required maxlength="20" pattern="[+0-9() -]{8,20}"></div>
+          </div>
+          <div class="field full">
+            <label for="address" data-en="Address" data-ta="முகவரி">Address <span>*</span></label>
+            <div class="control"><textarea id="address" name="address" autocomplete="street-address" placeholder="Enter your full address" data-placeholder-en="Enter your full address" data-placeholder-ta="முழு முகவரியை உள்ளிடவும்" required maxlength="500"></textarea></div>
+          </div>
+          <div class="field full">
+            <label for="plan" data-en="Interest / plan" data-ta="விருப்பம் / திட்டம்">Interest / plan <span class="optional" data-en="Optional" data-ta="விருப்பத்தேர்வு">Optional</span></label>
+            <div class="control">
+              <select id="plan" name="plan">
+                <option value="" data-en="Choose an option" data-ta="ஒரு விருப்பத்தைத் தேர்வு செய்யவும்">Choose an option</option>
+                <option value="BVS">BVS</option>
+                <option value="Staking">Staking</option>
+                <option value="Other / To be confirmed" data-en="Other / To be confirmed" data-ta="மற்றவை / பின்னர் உறுதி செய்யப்படும்">Other / To be confirmed</option>
+              </select><span class="select-arrow">⌄</span>
+            </div>
+            <div class="hint" data-en="Selecting a plan does not confirm an investment or guarantee returns." data-ta="ஒரு திட்டத்தைத் தேர்வு செய்வது முதலீட்டை உறுதிப்படுத்துவதோ வருமானத்தை உத்தரவாதம் செய்வதோ அல்ல.">Selecting a plan does not confirm an investment or guarantee returns.</div>
+          </div>
+          <div class="field full">
+            <label for="followupDate" data-en="Follow-up date" data-ta="மீண்டும் தொடர்புகொள்ள வேண்டிய தேதி">Follow-up date</label>
+            <div class="control"><input id="followupDate" name="followupDate" type="date" aria-label="Follow-up date"></div>
+          </div>
+        </div>
+        <button class="submit" id="submitBtn" type="submit"><span id="submitLabel" data-en="Submit registration" data-ta="பதிவைச் சமர்ப்பிக்கவும்">Submit registration</span> <span aria-hidden="true">↗</span></button>
+        <div id="status" class="status" role="status" aria-live="polite"></div>
+        <div class="privacy">
+          <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/><path d="M12 14v3"/></svg>
+          <span data-en="Your details are intended for administrator follow-up only. Do not submit passwords, OTPs, wallet seed phrases, or private keys." data-ta="உங்கள் விவரங்கள் நிர்வாக follow-up-க்காக மட்டுமே. Password, OTP, wallet seed phrase அல்லது private key ஆகியவற்றை உள்ளிட வேண்டாம்.">Your details are intended for administrator follow-up only. Do not submit passwords, OTPs, wallet seed phrases, or private keys.</span>
+        </div>
+      </form>
+    </section>
+  </section>
+  <footer class="foot"><span data-en="Independent customer registration form" data-ta="சுயாதீன வாடிக்கையாளர் பதிவு படிவம்">Independent customer registration form</span><span><strong data-en="Not an official Nexus.vin website or service." data-ta="இது Nexus.vin நிறுவனத்தின் அதிகாரப்பூர்வ இணையதளம் அல்ல.">Not an official Nexus.vin website or service.</strong></span></footer>
+</main>
+
+<div class="celebration" id="celebration" role="dialog" aria-modal="true" aria-labelledby="welcomeTitle">
+  <div class="welcome-card">
+    <div class="welcome-icon" aria-hidden="true">✓</div>
+    <h2 id="welcomeTitle" data-en="Thanks for Registering!" data-ta="பதிவு செய்ததற்கு நன்றி!">Thanks for Registering!<span data-en="Welcome to Bitcoin Community 🎉" data-ta="Bitcoin சமூகத்திற்கு வரவேற்கிறோம் 🎉">Welcome to Bitcoin Community 🎉</span></h2>
+    <p data-en="Your registration has been submitted. We appreciate you joining our community." data-ta="உங்கள் பதிவு அனுப்பப்பட்டுள்ளது. எங்கள் சமூகத்தில் இணைந்ததற்கு நன்றி.">Your registration has been submitted. We appreciate you joining our community.</p>
+    <button class="welcome-close" id="welcomeClose" type="button" data-en="Continue" data-ta="தொடரவும்">Continue</button>
+  </div>
+</div>
+
+<script>
+/* Replace this with your deployed Google Apps Script Web App URL. */
+const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwvQV6f-hqPEyrXYCeBD3-lkGYRueXUMIdNkaUOiYcSH2y466JAC61xAj2k9_N6VceQ/exec";
+let currentLanguage = "en";
+function setLanguage(lang) {
+  currentLanguage = lang;
+  document.documentElement.lang = lang === "ta" ? "ta" : "en";
+  document.querySelectorAll("[data-en][data-ta]").forEach(el => {
+    const value = el.dataset[lang];
+    if (value !== undefined) {
+      if (el.tagName === "INPUT" || el.tagName === "TEXTAREA") return;
+      if (el.id === "welcomeTitle") {
+        const span = el.querySelector("span");
+        el.childNodes[0].textContent = value;
+        if (span) span.textContent = span.dataset[lang] || span.textContent;
+      } else {
+        el.textContent = value;
+      }
+    }
+  });
+  document.querySelectorAll("[data-placeholder-en][data-placeholder-ta]").forEach(el => {
+    el.placeholder = lang === "ta" ? el.dataset.placeholderTa : el.dataset.placeholderEn;
+  });
+  document.querySelectorAll("option[data-en][data-ta]").forEach(el => {
+    el.textContent = lang === "ta" ? el.dataset.ta : el.dataset.en;
+  });
+  document.getElementById("langEn").classList.toggle("active", lang === "en");
+  document.getElementById("langTa").classList.toggle("active", lang === "ta");
+  document.getElementById("langEn").setAttribute("aria-pressed", String(lang === "en"));
+  document.getElementById("langTa").setAttribute("aria-pressed", String(lang === "ta"));
+  document.getElementById("soundButton").textContent = lang === "ta" ? "ஒலியை இயக்கு" : "Enable sound";
+  const submitLabel = document.getElementById("submitLabel");
+  if (submitLabel) submitLabel.textContent = lang === "ta" ? "பதிவைச் சமர்ப்பிக்கவும்" : "Submit registration";
+}
+document.getElementById("langEn").addEventListener("click", () => setLanguage("en"));
+document.getElementById("langTa").addEventListener("click", () => setLanguage("ta"));
+const videoPlayer = document.getElementById("heroVideo");
+document.getElementById("soundButton").addEventListener("click", async () => {
+  videoPlayer.muted = false;
+  try { await videoPlayer.play(); } catch (error) { /* Browser may require tapping the player directly. */ }
+  document.getElementById("soundButton").textContent = currentLanguage === "ta" ? "ஒலி இயக்கப்பட்டது" : "Sound enabled";
+});
+const form = document.getElementById("registrationForm");
+const button = document.getElementById("submitBtn");
+const statusBox = document.getElementById("status");
+
+const celebration = document.getElementById("celebration");
+function launchCelebration(){
+  celebration.classList.add("show");
+  const colors = ["#1269e8", "#29b6f6", "#ffd166", "#06d6a0", "#ef476f", "#8b5cf6", "#ff9f1c"];
+  for(let i=0;i<100;i++){
+    const piece=document.createElement("span");
+    piece.className="confetti-piece";
+    piece.style.left=(Math.random()*100)+"vw";
+    piece.style.backgroundColor=colors[Math.floor(Math.random()*colors.length)];
+    piece.style.setProperty("--duration",(2.1+Math.random()*2.1)+"s");
+    piece.style.setProperty("--drift",((Math.random()-.5)*260)+"px");
+    piece.style.setProperty("--rot",(Math.random()*360)+"deg");
+    piece.style.animationDelay=(Math.random()*.65)+"s";
+    document.body.appendChild(piece);
+    setTimeout(()=>piece.remove(),5000);
+  }
+}
+function closeCelebration(){celebration.classList.remove("show");}
+document.getElementById("welcomeClose").addEventListener("click",closeCelebration);
+celebration.addEventListener("click",(event)=>{if(event.target===celebration)closeCelebration();});
+document.addEventListener("keydown",(event)=>{if(event.key==="Escape")closeCelebration();});
+
+
+form.addEventListener("submit", async (event) => {
+  event.preventDefault();
+  statusBox.className = "status";
+  if (!SCRIPT_URL || SCRIPT_URL.includes("PASTE_YOUR_")) {
+    statusBox.textContent = "Google Sheet connection இன்னும் அமைக்கப்படவில்லை. Admin setup முடிந்ததும் மீண்டும் முயற்சிக்கவும்.";
+    statusBox.className = "status show err";
+    return;
+  }
+  button.disabled = true;
+  button.textContent = "Submitting…";
+  const data = Object.fromEntries(new FormData(form).entries());
+  data.submittedAt = new Date().toISOString();
+  try {
+    await fetch(SCRIPT_URL, {
+      method: "POST",
+      mode: "no-cors",
+      headers: {"Content-Type":"text/plain;charset=utf-8"},
+      body: JSON.stringify(data)
+    });
+    statusBox.textContent = "பதிவு அனுப்பப்பட்டது. Google Sheet-ல் புதிய row வந்துள்ளதா என்று admin சரிபார்க்கவும். வரவில்லை என்றால் Apps Script-ஐ New version ஆக மீண்டும் Deploy செய்யவும்.";
+    statusBox.className = "status show ok";
+    form.reset();
+    launchCelebration();
+  } catch (error) {
+    statusBox.textContent = "Could not send the form. Please check your connection and try again.";
+    statusBox.className = "status show err";
+  } finally {
+    button.disabled = false;
+    button.innerHTML = 'Submit registration <span aria-hidden="true">↗</span>';
+  }
+});
+</script>
+</body>
+</html>
